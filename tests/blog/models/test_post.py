@@ -19,9 +19,9 @@ def test_publish_sets_published_to_current_datetime():
 
 def test_published_posts_only_returns_those_with_published_status():
     # Create a published Post by setting the status to "published"
-    published = mommy.make('blog.Post', status=Post.PUBLISHED)
+    published = mommy.make('blog.Post', status=post.PUBLISHED)
     # Create a draft Post
-    mommy.make('blog.Post', status=Post.DRAFT)
+    mommy.make('blog.Post', status=post.DRAFT)
 
     # We expect only the "publised" object to be returned
     expected = [published]

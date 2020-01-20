@@ -67,4 +67,4 @@ class Post(models.Model):
         return self.title
     def publish(self):
         self.status = self.PUBLISHED
-        sef.published = timezone.now()
+        self.published = timezone.now()
