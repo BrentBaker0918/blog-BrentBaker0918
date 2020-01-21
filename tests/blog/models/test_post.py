@@ -1,6 +1,5 @@
 # tests/blog/models/test_post.py
 
-from django.test import TestCase
 from model_bakery import baker
 import pytest
 import datetime as dt
