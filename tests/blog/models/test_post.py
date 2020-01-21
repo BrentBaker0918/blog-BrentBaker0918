@@ -1,12 +1,12 @@
 # tests/blog/test_post.py
-
-import pytest
 from model_mommy import mommy
+import pytest
 import datetime as dt
+from blog.models import Post
 from freezegun import freeze_time
 # Mark this test module as requiring the database
 pytestmark = pytest.mark.django_db
-
+post = mommy.make('blog.Post')  # Create a new Post object
 
 @freeze_time(dt.datetime(2030, 6, 1, 12), tz_offset=0) # replaces now()
 def test_publish_sets_published_to_current_datetime():
