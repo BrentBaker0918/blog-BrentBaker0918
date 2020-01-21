@@ -1,5 +1,6 @@
 # tests/blog/models/test_post.py
 
+from django.test import TestCase
 from model_bakery import baker
 import pytest
 import datetime as dt
@@ -10,7 +11,7 @@ from django.utils import timezone
 # Mark this test module as requiring the database
 pytestmark = pytest.mark.django_db
 @freeze_time(dt.datetime(2030, 6, 1, 12), tz_offset=0)  # Replaces now()
-def test_publish_sets_published_to_current_datetime():
+def test_publish_sets_published_to_current_datetime(TestCase):
     # Create a new post, and ensure no published datetime is set
     post = baker.make('blog.Post', published=None)
     post.publish()
@@ -18,12 +19,12 @@ def test_publish_sets_published_to_current_datetime():
     # Set the timezone to UTC (to match tz_offset=0)
     assert post.published == dt.datetime(2030, 6, 1, 12, tzinfo=dt.timezone.utc)
 
-def test_publish_sets_status_to_published():
+def test_publish_sets_status_to_published(TestCase):
     post = baker.make('blog.Post', status=Post.DRAFT)
     post.publish()
     assert post.status == Post.PUBLISHED
 
-def test_published_posts_only_returns_those_with_published_status():
+def test_published_posts_only_returns_those_with_published_status(TestCase):
     # Create a published Post by setting the status to "published"
     published = baker.make('blog.Post', status=Post.PUBLISHED)
     # Create a draft Post
