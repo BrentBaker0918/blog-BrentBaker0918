@@ -34,7 +34,8 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True) #sets on create
     updated = models.DateTimeField(auto_now=True) # Updates on each save
     author = models.ForeignKey(settings.AUTH_USER_MODEL, # the Django auth user models on_delete=models.PROTECT, # prevent posts from being deleted related_name='blog_posts', #"this" on the user model
-    )published = models.DateTimeField(null=True, blank=True, help_text='The date & time this article was published',)
+    )
+    published = models.DateTimeField(null=True, blank=True, help_text='The date & time this article was published',)
     slug = models.SlugField(help_text='reference for the blog post', unique_for_date='published', #slug is unique for publication date
     )
     topics = models.ManyToManyField(Topic, related_name='blog_posts')
