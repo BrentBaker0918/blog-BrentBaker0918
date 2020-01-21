@@ -1,5 +1,6 @@
 from django.conf import settings # imports Django's loaded settings
 from django.db import models
+from pytz import timezone
 
 # Create your models here.
 class Topic(models.Model):
