@@ -1,11 +1,9 @@
 # tests/blog/models/test_post.py
-
+import datetime as dt
 from model_mommy import mommy
 import pytest
-import datetime as dt
 from freezegun import freeze_time
 from blog.models import Post
-from django.utils import timezone
 
 # Mark this test module as requiring the database
 pytestmark = pytest.mark.django_db
