@@ -1,5 +1,5 @@
 # tests/blog/models/test_post.py
-
+from django.test import TestCase
 from model_bakery import baker
 import pytest
 import datetime as dt
@@ -18,16 +18,16 @@ def test_publish_sets_published_to_current_datetime(TestCase):
     # Set the timezone to UTC (to match tz_offset=0)
     assert post.published == dt.datetime(2030, 6, 1, 12, tzinfo=dt.timezone.utc)
 
-def test_publish_sets_status_to_published(TestCase):
-    post = baker.make('blog.Post', status=Post.DRAFT)
+def test_publish_sets_status_to_published():
+    post = baker.make('blog.Post')
     post.publish()
     assert post.status == Post.PUBLISHED
 
-def test_published_posts_only_returns_those_with_published_status(TestCase):
+def test_published_posts_only_returns_those_with_published_status():
     # Create a published Post by setting the status to "published"
     published = baker.make('blog.Post', status=Post.PUBLISHED)
     # Create a draft Post
-    baker.make('blog.Post', status=Post.DRAFT)
+    baker.make('blog.Post')
 
     # We expect only the "publised" object to be returned
     expected = [published]
