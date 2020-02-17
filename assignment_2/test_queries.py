@@ -104,7 +104,7 @@ def test_question_9_create_a_comment_for_post():
 
 def test_question_10_set_comment_approved_false():
     comment = mommy.make('blog.Comment', approved=True)
-    result = queries.question_10_set_approved_to_false(comment)
+    queries.question_10_set_approved_to_false(comment)
     comment.refresh_from_db()
 
     assert comment.approved is False
@@ -113,7 +113,7 @@ def test_question_10_set_comment_approved_false():
 def test_question_11_delete_post_and_comments():
     post = mommy.make('blog.Post')
     mommy.make('blog.Comment', post=post, _quantity=2)
-    result = queries.question_11_delete_post_and_all_related_comments(post)
+    queries.question_11_delete_post_and_all_related_comments(post)
 
     assert Post.objects.exists() is False
     assert Comment.objects.exists() is False
