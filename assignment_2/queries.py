@@ -1,17 +1,15 @@
-from django.contrib.auth import get_user_model
-from django.db.models import Sum, Q, Count
 from blog.models import Comment, Post
+from django.contrib.auth import get_user_model
 from django.apps import apps
+
 User = get_user_model()
-
-
 
 def question_1_return_active_users():
     """
     Return the results of a query which returns a list of all
     active users in the database.
     """
-    user= User.objects.filter(is_active=True)
+    user = User.objects.filter(is_active=True)
     return user
 
 def question_2_return_regular_users():
