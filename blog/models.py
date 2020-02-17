@@ -24,15 +24,15 @@ class PostQuerySet(models.QuerySet): # querys for Post class
         return self.filter(status=self.model.PUBLISHED)
     def drafts(self): # filter to the draft items
         return self.filter(status=self.model.DRAFT)
-    def contains(self,test_word): #filter to items containing test text
+    def contains(self, test_word): #filter to items containing test text
         local_test_word = str(test_word).lower()
         return self.filter(Q(title__icontains=local_test_word)|Q(content__icontains=local_test_word))
         return
     def top_user(self): # find the user with the most posts
         users = User.objects.anotate(total_posts=Count('blog_posts'))
-        myQuerySet = users.order_by('-total_posts').values('username','total_posts')
+        myQuerySet = users.order_by('-total_posts').values('username', 'total_posts')
         return myQuerySet[0]
-    def delete_post_and_comments(self,post): # delete a post and all comments
+    def delete_post_and_comments(self, post): # delete a post and all comments
         post.delete() # as comments are set to cascade all comments are deleted
 class Post(models.Model):
     """
@@ -72,10 +72,10 @@ class CommentQuerySet(models.QuerySet):
         posts = Post.objects.annotate(total_comments=Count('comments'))
         my_query_set = posts.order_by('-total_comments')
         return my_query_set[0]
-    def make_comment(self,post): # add a comment to a given post
-        comment = Comment.objects.create(name='Brent',post=post,approved=False,email='myemail@hotmail.com',text='here is a comment',)
+    def make_comment(self, post): # add a comment to a given post
+        comment = Comment.objects.create(name='Brent', post=post, approved=False, email='myemail@hotmail.com', text='here is a comment', )
         return comment
-    def make_comment_draft(self,comment): # set status of a post to draft
+    def make_comment_draft(self, comment): # set status of a post to draft
         comment.approved = False
         comment.save()
 
