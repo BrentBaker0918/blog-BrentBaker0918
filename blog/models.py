@@ -1,7 +1,7 @@
 from django.conf import settings # imports Django's loaded settings
 from django.db import models
 from django.utils import timezone
-from django.db.models import Sum, Q, Count
+from django.db.models import Q, Count
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -27,7 +27,6 @@ class PostQuerySet(models.QuerySet): # querys for Post class
     def contains(self, test_word): #filter to items containing test text
         local_test_word = str(test_word).lower()
         return self.filter(Q(title__icontains=local_test_word)|Q(content__icontains=local_test_word))
-        return
     def top_user(self): # find the user with the most posts
         users = User.objects.anotate(total_posts=Count('blog_posts'))
         myQuerySet = users.order_by('-total_posts').values('username', 'total_posts')
@@ -66,8 +65,6 @@ class CommentQuerySet(models.QuerySet):
         return self.filter(approved=self.model.PUBLISHED)
     def statusPending(self): # filter to draft comments
         return self.filter(approved=self.model.DRAFT)
-    def comments(self): # return all comments
-        return qeryset.all()
     def most_active_post(self): # post with most comments
         posts = Post.objects.annotate(total_comments=Count('comments'))
         my_query_set = posts.order_by('-total_comments')

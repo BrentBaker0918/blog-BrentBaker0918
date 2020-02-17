@@ -3,7 +3,7 @@ from . import models
 # Register your models here.
 class CommentInline(admin.TabularInline):
     model = models.Comment
-    fields= (
+    fields = (
         'name',
         'email',
         'text',

@@ -1,6 +1,6 @@
-from blog.models import Comment, Post
 from django.contrib.auth import get_user_model
 from django.apps import apps
+from blog.models import Comment, Post
 
 User = get_user_model()
 
@@ -17,7 +17,7 @@ def question_2_return_regular_users():
     Return the results of a query which returns a list of users that
     are *not* staff and *not* superusers
     """
-    user= User.objects.filter(is_staff=False, is_superuser=False,)
+    user = User.objects.filter(is_staff=False, is_superuser=False,)
     return user
 
 
