@@ -1,0 +1,54 @@
+<!-- blog/templates/blog/base.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static "blog/base.css" %}">
+  <title>My Blog – {% block page_title %}My Django blog{% endblock %}</title>
+</head>
+
+<body>
+  <!-- The header -->
+  <header id="site-header">
+     <h1>My Blog</h1>
+     <p>A blog about django</p>
+  </header>
+
+  <!-- Top navigation -->
+  <nav id="top-nav">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Posts</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <div>
+       {% block main %}
+       <!-- Content for the main block will be rendered here -->
+       {% endblock %}
+    </div>
+    <aside id="sidebar">
+      <section id="topic-list">
+        <h3>Popular Topics</h3>
+        <ul>
+          {% for topic in topics %}
+
+          <li>  {{ topic.name}}  ({{ topic.blog_posts__count}})</li>
+          {% endfor %}
+        </ul>
+      </section>
+    </aside>
+
+  </main>
+  <!-- The footer -->
+  <footer id="site-footer">
+    <!-- Print copyright with the current year -->
+    Copyright &copy;{% now 'Y' %}
+  </footer>
+</body>
+</html>

@@ -2,7 +2,9 @@ from django.conf import settings # imports Django's loaded settings
 from django.db import models
 from django.utils import timezone
 from django.db.models import Q, Count
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Topic(models.Model):
@@ -33,6 +35,23 @@ class PostQuerySet(models.QuerySet): # querys for Post class
         return myQuerySet[0]
     def delete_post_and_comments(self, post): # delete a post and all comments
         post.delete() # as comments are set to cascade all comments are deleted
+    def get_all_authors(self):
+        # Get the authors for all posts
+        Post.objects.all().get_authors()
+    def get_published_authors(self):
+        # Get the authors for published posts only (use existing `published()` query)
+        Post.objects.published().get_authors()
+
+    def get_authors_published_today(self):
+        Post.objects.published() \
+        .filter(published__gte=timezone.now().date()) \
+        .get_authors()
+
+    def get_authors(self):
+        User = get_user_model()
+        #get the author of this QuerySet
+        return User.objects.filter(blog_posts__in=self).distinct()
+
 class Post(models.Model):
     """
     represents a blog post
