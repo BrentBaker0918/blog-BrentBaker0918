@@ -11,7 +11,7 @@ pytestmark = pytest.mark.django_db
 def test_home(client):
     response = client.get('/')
     assert response.status_code == 200
-
+git
 def test_top_topics_working(client, django_user_model):
     cosmo = mommy.make(
         django_user_model,
@@ -19,10 +19,9 @@ def test_top_topics_working(client, django_user_model):
         first_name='Cosmo',
         last_name='Kramer'
     )
-    my_topics = mommy.make(Topic,
-        _quantity=15)
+    my_topics = mommy.make(Topic, _quantity=15)
     count = 0
-    test_topics=[]
+    test_topics = []
     for a_topic in my_topics:
         count += 1
         for item in range(count):
@@ -30,14 +29,15 @@ def test_top_topics_working(client, django_user_model):
                 'Post',
                 status=Post.PUBLISHED,
                 author=cosmo,
-                topics= [a_topic]
+                topics=[a_topic]
             )]
+            item = 0 # got rid of travis issue lol
     top_posts = Topic.objects.order_by('-blog_posts__count').annotate(Count('blog_posts')).values('blog_posts__count')
 
-    assert  top_posts[0].get('blog_posts__count')== 15
-    assert  top_posts[10].get('blog_posts__count')== 5
+    assert  top_posts[0].get('blog_posts__count') == 15
+    assert  top_posts[10].get('blog_posts__count') == 5
 
-def test_authors_included_in_context_data(client, django_user_model):
+def test_authors_included_in_context_data(django_user_model):
     """
     Checks that a list of unique published authors is included in the
     context and is ordered by first name.
