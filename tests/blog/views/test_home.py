@@ -11,8 +11,7 @@ pytestmark = pytest.mark.django_db
 def test_home(client):
     response = client.get('/')
     assert response.status_code == 200
-git
-def test_top_topics_working(client, django_user_model):
+def test_top_topics_working(django_user_model):
     cosmo = mommy.make(
         django_user_model,
         username='ckramer',
@@ -31,7 +30,6 @@ def test_top_topics_working(client, django_user_model):
                 author=cosmo,
                 topics=[a_topic]
             )]
-            item = 0 # got rid of travis issue lol
     top_posts = Topic.objects.order_by('-blog_posts__count').annotate(Count('blog_posts')).values('blog_posts__count')
 
     assert  top_posts[0].get('blog_posts__count') == 15

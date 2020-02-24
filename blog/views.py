@@ -14,4 +14,3 @@ def home(request):
     # Add as context variable "latest_posts"
     context = {'authors' : authors, 'latest_posts': latest_posts, 'topics': top_topics[0:10]}
     return render(request, 'blog/home.html', context)
-    
