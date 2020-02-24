@@ -1,9 +1,9 @@
 # tests/blog/views/test_home.py
 from model_mommy import mommy
 import pytest
-
+from django.test import Client
 from blog.models import Post, Topic, Count
-
+client = Client()
 # Needed for database
 pytestmark = pytest.mark.django_db
 
