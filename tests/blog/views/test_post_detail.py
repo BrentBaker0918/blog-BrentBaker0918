@@ -13,29 +13,29 @@ def test_post_detail_filters_by_date(client):
     mommy.make(
         'blog.Post',
         title='2019 Halloween',
-        slug='happy-halloween',
+        slug='happyhalloween',
         published='2019-10-31T00:00Z',
         status=Post.PUBLISHED,
     )
     mommy.make(
         'blog.Post',
         title='2020 Halloween',
-        slug='happy-halloween',
+        slug='happyhalloween',
         published='2020-10-31T00:00Z',
         status=Post.PUBLISHED,
     )
 
-    response = client.get('/posts/2019/10/31/happy-halloween/')
+    response = client.get('/posts/2019/10/31/happyhalloween/')
     assert response.status_code == 200
 
 def test_post_detail_returns_404_for_drafts(client):
     mommy.make(
         'blog.Post',
-        slug='happy-new-year',
+        slug='happynewyear',
         published='2020-01-01T00:00Z',
         status=Post.DRAFT,
     )
-    response = client.get('/posts/2020/1/1/happy-new-year/')
+    response = client.get('/posts/2020/1/1/happynewyear/')
     assert response.status_code == 404
 def test_post_detail_by_pk_without_published_date(client):
     post = mommy.make('blog.Post', status=Post.PUBLISHED)
