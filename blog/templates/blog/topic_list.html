@@ -1,0 +1,11 @@
+{# blog/templates/blog/topic_list.html #}
+{% extends "blog/base.html" %}
+
+{% block page_title %}Topics{% endblock %}
+
+{% block main %}
+<h1>Topics</h1>
+{% for a_topic in all_topics %}
+{% include "blog/topic_preview.html" %}
+{% endfor %}
+{% endblock %}

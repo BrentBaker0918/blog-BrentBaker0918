@@ -43,3 +43,37 @@ def test_get_authors_returns_users_who_have_authored_a_post(django_user_model):
     mommy.make(django_user_model)
 
     assert list(Post.objects.get_authors()) == [author]
+def test_post_list_returns_latest_first(client):
+    latest = mommy.make(
+        'blog.Post',
+        status=Post.PUBLISHED,
+        published='2020-01-01T00:00:00Z',
+        title='Happy 2020!'
+    )
+    earliest = mommy.make(
+        'blog.Post',
+        status=Post.PUBLISHED,
+        published='2019-01-01T00:00:00Z',
+        title='Happy 2019!',
+    )
+    response = client.get('/posts/')
+    result = response.context.get('posts')
+    expected = [latest, earliest]
+
+    assert list(result) == expected
+    
+def test_get_absolute_url_for_post_with_published_date():
+    post = mommy.make(
+        'blog.Post',
+        published=dt.datetime(2014, 12, 20, tzinfo=dt.timezone.utc),
+        slug='model-instances',
+    )
+    assert post.get_absolute_url() == '/posts/2014/12/20/model-instances/'
+def test_get_absolute_url_for_post_without_published_date_or_slug():
+    post = mommy.make(
+        'blog.Post',
+        published=None,
+    )
+
+    # See if this method can be called
+    assert post.get_absolute_url() == f'/posts/{post.pk}/'

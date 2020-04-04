@@ -1,0 +1,21 @@
+{# blog/templates/blog/topic_detail.html #}
+{% extends "blog/base.html" %}
+
+{% block page_title %} {{topic_details.slug}} details {% endblock %}
+
+{% block main %}
+  <h1>Topic : {{ topic_details.slug}}</h1>
+  {% for a_topic in topic_posts %}
+    {% for item in a_topic %}
+    <article id="post-detail-article">
+      <h1>{{ item.title }}</h1>
+      <span class="published">Published <time>{{ item.published }}</time></span><br>
+      <span class="author">{{ item.author.get_full_name }}</span>
+      <section class="content">{{ item.content|linebreaks }}</section>
+      <p><a href="{{ item.get_absolute_url }}">Read more &rarr; </a></p>
+    </article>
+    {% endfor %}
+  {% endfor %}
+
+
+{% endblock %}

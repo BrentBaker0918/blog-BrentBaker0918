@@ -10,9 +10,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   grid-template-rows: auto auto 1fr auto;  /* Sticky footer */
   margin: 0 auto;  /* Centers the page */
-  max-width: 1200px;  /* Set max width */
-  min-height: 100%;  /* Full height */
+  min-height: 90%;  /* Full height */
+  max-height: 90%;
+  min-width: 100%;
   padding: 1rem;
+
 }
 
 
@@ -75,7 +77,9 @@ a:hover {
   color: #0366d6;
   margin-top: 1rem;
   margin-bottom: 2rem;
-
+  background: url("django_image.PNG");
+  background-size:auto;
+  background-repeat: no-repeat;
 }
 
 /* Style the footer */
@@ -90,13 +94,47 @@ a:hover {
   display: grid;
   /* the grid will have 2 columns */
   grid-template-columns: auto 200px;
+  color: blue;
 }
 aside {
   color: blue;
   background-color: rgba(52,30,48,.5);
 }
-div {
-  background: url("django_image.PNG");
-  background-size: 1000px,1000px;
-  background-repeat: no-repeat;
+/* Post preview */
+.post-preview {
+  border-bottom: 1px #eee solid;
+}
+.post-preview h2 {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  color: blue;
+}
+
+.post-preview time {
+  color: blue;
+}
+
+.post-preview section {
+  margin: 1rem 0;
+}
+/* Post detail article */
+#post-detail-article h1 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#post-detail-article .author {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #555;
+}
+
+#post-detail-article .published {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+#post-detail-article .content {
+  margin: 2rem 0;
+  color: blue;
 }

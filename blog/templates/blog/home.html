@@ -5,15 +5,10 @@
 
 {% block main %}
   <!-- <img src="{% static "blog/django_image.PNG" %}" alt="django"> -->
-  <section class="latest-article-preview">
-
-  {% for post in latest_posts %}
-  <article>
-    <h2>{{ post.title }}</h2>
-    <em>{{ post.published|timesince }} ago</em>
-    {{ post.content | linebreaks }}
-  </article>
-  {% endfor %}
-
-</section>
+  <section>
+    <h1>Latest posts</h1>
+    {% for post in latest_posts %}
+      {% include "blog/post_preview.html" %}
+    {% endfor %}
+  </section>
 {% endblock %}
