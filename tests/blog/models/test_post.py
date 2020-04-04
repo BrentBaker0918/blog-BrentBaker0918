@@ -61,12 +61,12 @@ def test_post_list_returns_latest_first(client):
     expected = [latest, earliest]
 
     assert list(result) == expected
-    
+
 def test_get_absolute_url_for_post_with_published_date():
     post = mommy.make(
         'blog.Post',
         published=dt.datetime(2014, 12, 20, tzinfo=dt.timezone.utc),
-        slug='model-instances',
+        slug='modelinstances',
     )
     assert post.get_absolute_url() == '/posts/2014/12/20/model-instances/'
 def test_get_absolute_url_for_post_without_published_date_or_slug():
