@@ -1,7 +1,7 @@
 # tests/blog/views/test_post_list.py
 from model_mommy import mommy
 import pytest
-from blog.models import Post, Topic, Count
+from blog.models import Post
 pytestmark = pytest.mark.django_db
 
 

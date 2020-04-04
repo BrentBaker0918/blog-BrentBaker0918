@@ -1,7 +1,5 @@
 # blog / views.py
 from django.shortcuts import render
-from django.db.models import Count
-from django.urls import reverse
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
 from . import models
@@ -23,7 +21,7 @@ class AboutView(TemplateView):
     template_name = 'blog/about.html'
 
 def terms_and_conditions(request):
-   return render(request, 'blog/terms_and_conditions.html')
+    return render(request, 'blog/terms_and_conditions.html')
 
 class PostListView(ListView):
     model = models.Post

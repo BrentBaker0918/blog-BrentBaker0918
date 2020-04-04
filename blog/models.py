@@ -6,7 +6,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
-import os
 # Create your models here.
 class Topic(models.Model):
     name = models.CharField(
@@ -22,12 +21,12 @@ class Topic(models.Model):
     class Meta:
         ordering = ['name']
     def save(self, *args, **kwargs):
-        strip_name = self.name.replace(" ","")
-        self.slug =  slugify(strip_name)
+        strip_name = self.name.replace(" ", "")
+        self.slug = slugify(strip_name)
         super(Topic, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("topic_detail", kwargs={"slug",self.slug})
+        return reverse("topic_detail", kwargs={"slug", self.slug})
 class PostQuerySet(models.QuerySet): # querys for Post class
     def published(self): # filter to the published items
         return self.filter(status=self.model.PUBLISHED)
@@ -45,9 +44,8 @@ class PostQuerySet(models.QuerySet): # querys for Post class
     def get_all_authors(self):
         # Get the authors for all posts
         Post.objects.all().get_authors()
-    def get_my_topics(self,**kwargs):
-        print("all topics")
-        return models.Topic.filter(name = self.blog_posts)
+    def get_my_topics(self):
+        return models.Topic.filter(name=self.blog_posts)
     def get_published_authors(self):
         # Get the authors for published posts only (use existing `published()` query)
         Post.objects.published().get_authors()
@@ -62,17 +60,17 @@ class PostQuerySet(models.QuerySet): # querys for Post class
         #get the author of this QuerySet
         return User.objects.filter(blog_posts__in=self).distinct()
 
-    def topic_posts(self,a_topic):
-            post_ids = []
-            my_object = Topic.objects.filter(name=a_topic.get('object'))
-            # print(my_object.values('pk'))
-            # print(my_object.values('pk').values_list('pk')[0][0])
-            for my_post in Post.objects.published().order_by('-published'):
-                for topics in my_post.topics.all():
-                    # .filter(status=self.model.PUBLISHED)
-                    if my_object.values('pk').values_list('pk')[0][0] == topics.id:
-                        post_ids.append(Post.objects.filter(pk=my_post.id))
-            return post_ids
+    def topic_posts(self, a_topic):
+        post_ids = []
+        my_object = Topic.objects.filter(name=a_topic.get('object'))
+        # print(my_object.values('pk'))
+        # print(my_object.values('pk').values_list('pk')[0][0])
+        for my_post in Post.objects.published().order_by('-published'):
+            for topics in my_post.topics.all():
+                # .filter(status=self.model.PUBLISHED)
+                if my_object.values('pk').values_list('pk')[0][0] == topics.id:
+                    post_ids.append(Post.objects.filter(pk=my_post.id))
+        return post_ids
 
 class Post(models.Model):
     """
