@@ -18,6 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blog import views  # Import the blog views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,4 +42,7 @@ urlpatterns = [
         'topics/<slug:slug>/',
         views.TopicDetailView.as_view(),
         name='topic_detail'),
-]
+    path('form_example/', views.form_example, name='form-example'),
+    path('formview-example/', views.FormViewExample.as_view(), name='formview-example'),
+    path('contact/', views.ContactFormView.as_view(), name='contact'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

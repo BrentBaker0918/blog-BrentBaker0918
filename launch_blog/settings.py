@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9tqhd6pa@b&wt+qt$bl_ceqf6&f1y8v$5x*ofpfsx9ogaw*i+u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Read the DEBUG environment variable. Default to "1" for True.
+DEBUG = int(os.environ.get('DEBUG', '1'))
 
 ALLOWED_HOSTS = ['*']
 
@@ -125,3 +126,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AWS_LOCATION = 'q4um6g8ylpue/public/'
+AWS_STORAGE_BUCKET_NAME = 'cloud-cube'
+
+AWS_ACCESS_KEY_ID = os.environ.get('AKIA37SVVXBHQXO3ADOL')
+AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+
+# Use cloud storage if credentials are set
+if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

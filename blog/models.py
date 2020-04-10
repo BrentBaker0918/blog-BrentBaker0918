@@ -89,6 +89,7 @@ class Post(models.Model):
     published = models.DateTimeField(null=True, blank=True, help_text='The date & time this article was published',)
     slug = models.SlugField(help_text='reference for the blog post', unique_for_date='published',) #slug is unique for publication date
     topics = models.ManyToManyField(Topic, related_name='blog_posts')
+    banner = models.ImageField(blank=True, null=True, help_text='A banner image for the post')
     class Meta:
         # Sort by the `created` field. The `-` prefix
         # specifies to order in descending/reverse order.
@@ -163,3 +164,15 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-created']
+class Contact(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField()
+    message = models.TextField()
+    submitted = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-submitted']
+
+    def __str__(self):
+        return f'{self.submitted.date()}: {self.email}'
