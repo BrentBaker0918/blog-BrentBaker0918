@@ -130,7 +130,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-AWS_LOCATION = 'q4um6g8ylpue/public/'
+AWS_LOCATION = 'https://cloud-cube.s3.amazonaws.com/public/'
 AWS_STORAGE_BUCKET_NAME = 'cloud-cube'
 
 AWS_ACCESS_KEY_ID = os.environ.get('AKIA37SVVXBHQXO3ADOL')
