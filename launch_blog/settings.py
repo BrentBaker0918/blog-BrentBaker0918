@@ -127,7 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = 'https://cloud-cube.s3.amazonaws.com/q4um6g8ylpue'
+MEDIA_URL = 'https://cloud-cube.s3.amazonaws.com/q4um6g8ylpue/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AWS_LOCATION = 'q4um6g8ylpue/public/'
