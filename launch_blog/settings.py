@@ -126,11 +126,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AWS_LOCATION = 'q4um6g8ylpue/public/'
-AWS_STORAGE_BUCKET_NAME = 'cloud-cube'
+AWS_STORAGE_BUCKET_NAME = 'cloudcube-rigid-71265'
 
 AWS_ACCESS_KEY_ID = os.environ.get('AKIA37SVVXBHQXO3ADOL')
 AWS_SECRET_ACCESS_KEY = os.environ.get('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')
