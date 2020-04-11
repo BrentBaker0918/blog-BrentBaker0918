@@ -89,7 +89,9 @@ class Post(models.Model):
     published = models.DateTimeField(null=True, blank=True, help_text='The date & time this article was published',)
     slug = models.SlugField(help_text='reference for the blog post', unique_for_date='published',) #slug is unique for publication date
     topics = models.ManyToManyField(Topic, related_name='blog_posts')
+
     banner = models.ImageField(blank=True, null=True, help_text='A banner image for the post')
+    
     class Meta:
         # Sort by the `created` field. The `-` prefix
         # specifies to order in descending/reverse order.
