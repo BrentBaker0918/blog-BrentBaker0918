@@ -131,10 +131,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AWS_LOCATION = 'ws4fv3hxlyxl/public/'
-AWS_STORAGE_BUCKET_NAME = 'cloudcube-pointy-29104'
+AWS_STORAGE_BUCKET_NAME = 'cloud-cube'
 
-AWS_ACCESS_KEY_ID = os.environ.get('AKIA37SVVXBHWU6FAF4D')
-AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+AWS_ACCESS_KEY_ID = os.environ.get('CLOUDCUBE_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('CLOUDCUBE_SECRET_ACCESS_KEY')
 
 # Use cloud storage if credentials are set
 if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
