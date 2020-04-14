@@ -127,8 +127,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.environ.get('CLOUDCUBE_URL'), '/public')
+MEDIA_URL = os.path.join(os.environ.get('CLOUDCUBE_URL'),'/public/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AWS_LOCATION = 'ws4fv3hxlyxl/public/'
 AWS_STORAGE_BUCKET_NAME = 'cloud-cube'
