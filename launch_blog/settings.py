@@ -127,14 +127,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/public/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'public')
+MEDIA_URL = os.environ.get(CLOUDCUBE_URL)
+MEDIA_ROOT = os.path.join(os.environ.get(CLOUDCUBE_URL), 'public')
 
 AWS_LOCATION = 'ws4fv3hxlyxl/public/'
 AWS_STORAGE_BUCKET_NAME = 'cloud-cube'
 
-AWS_ACCESS_KEY_ID = os.environ.get('AKIA37SVVXBHWU6FAF4D')
-AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+AWS_ACCESS_KEY_ID = os.environ.get('CLOUDCUBE_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('CLOUDCUBE_SECRET_ACCESS_KEY')
 
 # Use cloud storage if credentials are set
 if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
