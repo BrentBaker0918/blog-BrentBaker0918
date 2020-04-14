@@ -127,7 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = os.environ.get('CLOUDCUBE_URL')
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.environ.get('CLOUDCUBE_URL'), 'public')
 
 AWS_LOCATION = 'ws4fv3hxlyxl/public/'
