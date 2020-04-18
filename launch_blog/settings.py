@@ -131,7 +131,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AWS_LOCATION = 'ws4fv3hxlyxl/public/'
-AWS_STORAGE_BUCKET_NAME = 'CLOUDCUBE'
+AWS_STORAGE_BUCKET_NAME = 'cloud-cube'
 
 AWS_ACCESS_KEY_ID = os.environ.get('CLOUDCUBE_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('CLOUDCUBE_SECRET_ACCESS_KEY')
