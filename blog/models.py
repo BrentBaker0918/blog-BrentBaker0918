@@ -77,14 +77,14 @@ class Post(models.Model):
     """
     represents a blog post
     """
-    content = RichTextUploadingField()
+
     objects = PostQuerySet.as_manager()
     DRAFT = 'draft'
     PUBLISHED = 'published'
     STATUS_CHOICES = [(DRAFT, 'Draft'), (PUBLISHED, 'Published')]
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=DRAFT, help_text='Set to "published" to make this publicly visible',)
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    content = RichTextUploadingField()
     created = models.DateTimeField(auto_now_add=True) #sets on create
     updated = models.DateTimeField(auto_now=True) # Updates on each save
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='blog_posts', null=False, )# the Django auth user models on_delete=models.PROTECT, # prevent posts from being deleted related_name='blog_posts', #"this" on the user model
