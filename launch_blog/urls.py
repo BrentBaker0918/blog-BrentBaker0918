@@ -16,7 +16,7 @@ Including another URLconf
 # mysite/urls.py
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from blog import views  # Import the blog views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -45,4 +45,5 @@ urlpatterns = [
     path('form_example/', views.form_example, name='form-example'),
     path('formview-example/', views.FormViewExample.as_view(), name='formview-example'),
     path('contact/', views.ContactFormView.as_view(), name='contact'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

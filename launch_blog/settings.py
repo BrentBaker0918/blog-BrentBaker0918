@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'credit',
+    'ckeditor',
+    'ckeditor_uploader',
     ]
 
 MIDDLEWARE = [
@@ -139,3 +141,4 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('CLOUDCUBE_SECRET_ACCESS_KEY')
 # Use cloud storage if credentials are set
 if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+CKEDITOR_UPLOAD_PATH = 'uploads/'

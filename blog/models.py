@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 class Topic(models.Model):
     name = models.CharField(
@@ -76,6 +77,7 @@ class Post(models.Model):
     """
     represents a blog post
     """
+    content = RichTextUploadingField()
     objects = PostQuerySet.as_manager()
     DRAFT = 'draft'
     PUBLISHED = 'published'
@@ -91,7 +93,7 @@ class Post(models.Model):
     topics = models.ManyToManyField(Topic, related_name='blog_posts')
 
     banner = models.ImageField(blank=True, null=True, help_text='A banner image for the post')
-    
+
     class Meta:
         # Sort by the `created` field. The `-` prefix
         # specifies to order in descending/reverse order.
