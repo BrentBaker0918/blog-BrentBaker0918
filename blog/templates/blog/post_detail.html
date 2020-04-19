@@ -11,7 +11,7 @@
   {% if post.banner %}
     <img src="{{ post.banner.url }}" width="100%" alt="Banner image">
   {% endif %}
-  <section class="content">{{ post.content|linebreaks }}</section>
+  <section class="content">{{ post.content|safe }}</section>
 </article>
 <h1>topics:
   {% for my_topic in post.topics.all %}
