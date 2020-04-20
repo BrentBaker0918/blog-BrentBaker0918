@@ -21,7 +21,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from blog import views  # Import the blog views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name='home'),  # Set root to home view

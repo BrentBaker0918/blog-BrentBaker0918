@@ -37,7 +37,6 @@
       <li><a href="{% url "topic-list" %}">Topics</a></li>
       <li><a href="{% url "PhotoContest" %}">Photo Contest</a></li>
       <li><a href="{% url "contact" %}">Contact</a></li>
-
     </ul>
   </nav>
 
@@ -53,7 +52,6 @@
         <h3>Popular Topics</h3>
         <ul>
           {% for topic in topics %}
-
           <li>  <a href="{% url 'topic_detail' topic.slug %}"> {{ topic.name}}</a>  ({{ topic.blog_posts__count}})</li>
           {% endfor %}
         </ul>
