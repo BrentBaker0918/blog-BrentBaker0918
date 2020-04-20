@@ -8,9 +8,9 @@
   <h1>{{ post.title }}</h1>
   <span class="published">Published <time>{{ post.published }}</time></span><br>
   <span class="author">{{ post.author.get_full_name }}</span>
-  {% if post.banner %}
+  <!-- {% if post.banner %}
     <img src="{{ post.banner.url }}" width="100%" alt="Banner image">
-  {% endif %}
+  {% endif %} -->
   <section class="content">{{ post.content|safe }}</section>
 </article>
 <h1>topics:
