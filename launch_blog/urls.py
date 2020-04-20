@@ -1,5 +1,4 @@
 """launch_blog URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
@@ -20,6 +19,7 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from blog import views  # Import the blog views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
