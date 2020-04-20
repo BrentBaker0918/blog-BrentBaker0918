@@ -118,6 +118,7 @@ class TopicDetailView(DetailView):
 
 class FormViewPhotoContest(CreateView):
     model = models.PhotoContest
+    template_name = 'blog/PhotoContest.html'
     # template_name = 'blog/form_photo_contest.html'
     # form_class = forms.PhotoContestForm
     success_url = reverse_lazy('home')
