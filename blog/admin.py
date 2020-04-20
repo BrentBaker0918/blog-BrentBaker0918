@@ -75,3 +75,13 @@ class ContactAdmin(admin.ModelAdmin):
         'message',
         'submitted'
     )
+
+@admin.register(models.PhotoContest)
+class PhotoContestAdmin(admin.ModelAdmin):
+    list_display = (
+        'email',
+        'last_name',
+        'first_name',
+        'photo',
+        'submitted'
+    )

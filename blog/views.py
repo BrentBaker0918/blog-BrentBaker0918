@@ -117,7 +117,46 @@ class TopicDetailView(DetailView):
         context['topic_posts'] = models.Post.objects.topic_posts(kwargs)
         return context
 
+class FormViewPhotoContest(CreateView):
+    model = models.PhotoContest
+    from django.contrib import messages
+    # template_name = 'blog/form_photo_contest.html'
+    # form_class = forms.PhotoContestForm
+    success_url = reverse_lazy('home')
+    fields = [
+    'first_name',
+    'last_name',
+    'email',
+    'photo',
+    ]
 
+    def form_valid(self, form):
+        self.messages.add_message(self.request, messages.SUCCESS, 'Thank you for submitting your photo to our contest', )
+        # Continue with default behaviour
+        return super().form_valid(form)
+
+# def form_PhotoContest(request):
+#     # Handle the POST
+#     if request.method == 'POST':
+#         # Pass the POST data into a new form instance for validation
+#         form = forms.PhotoContestForm(request.POST)
+#
+#         # If the form is valid, return a different template.
+#         if form.is_valid():
+#             # form.cleaned_data is a dict with valid form data
+#             cleaned_data = form.cleaned_data
+#
+#             return render(
+#                 request,
+#                 'blog/form_PhotoContest_success.html',
+#                 context={'data': cleaned_data}
+#             )
+#     # If not a POST, return a blank form
+#     else:
+#         form = forms.PhotoContestForm()
+#
+#     # Return if either an invalid POST or a GET
+#     return render(request, 'blog/form_photo_contest.html', context={'form': form})
 
 # def form_example(request):
 #     # Handle the POST
