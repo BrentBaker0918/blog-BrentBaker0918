@@ -33,7 +33,6 @@ def test_post_contact_form_saves_data(client):
     assert obj.last_name == data['last_name']
     assert obj.email == data['email']
     assert obj.message == data['message']
-    
 def test_invalid_submission(client):
     data = {'fizz': 'buzz'}
     response = client.post('/contact/', data)

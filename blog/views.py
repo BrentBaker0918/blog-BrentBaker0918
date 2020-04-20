@@ -2,10 +2,10 @@
 
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from . import forms, models
 from django.views.generic import DetailView, CreateView, FormView, ListView
 from django.urls import reverse_lazy
 from django.contrib import messages
+from . import forms, models
 
 class ContactFormView(CreateView):
     model = models.Contact
@@ -26,7 +26,6 @@ class ContactFormView(CreateView):
         return super().form_valid(form)
 
 class FormViewExample(FormView):
-    from django.contrib import messages
     template_name = 'blog/form_example.html'
     form_class = forms.ExampleSignupForm
     success_url = reverse_lazy('home')
@@ -119,17 +118,10 @@ class TopicDetailView(DetailView):
 
 class FormViewPhotoContest(CreateView):
     model = models.PhotoContest
-    from django.contrib import messages
     # template_name = 'blog/form_photo_contest.html'
     # form_class = forms.PhotoContestForm
     success_url = reverse_lazy('home')
-    fields = [
-    'first_name',
-    'last_name',
-    'email',
-    'photo',
-    ]
-
+    fields = ['first_name', 'last_name', 'email', 'photo', ]
     def form_valid(self, form):
         self.messages.add_message(self.request, messages.SUCCESS, 'Thank you for submitting your photo to our contest', )
         # Continue with default behaviour

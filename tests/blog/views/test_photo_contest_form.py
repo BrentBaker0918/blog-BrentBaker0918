@@ -1,9 +1,7 @@
 # tests/blog/views/test_contact_form.py
-
-import pytest
 from io import BytesIO
 from PIL import Image
-
+import pytest
 from blog.models import PhotoContest
 
 pytestmark = pytest.mark.django_db
@@ -32,22 +30,3 @@ def test_valid_form_submission(client, settings, tmpdir):
     assert obj.last_name == data['last_name']
     assert obj.email == data['email']
     assert obj.photo == data['photo']
-
-def test_post_PhotoContest_form_connect(client):
-    data = {
-        'first_name': 'George',
-        'last_name': 'Costanza',
-        'email': 'gcostanza@vandelay.com',
-
-    }
-    response = client.post('/PhotoContest/', data)
-    assert response.status_code == 200
-
-
-
-
-def test_invalid_submission(client):
-    data = {'fizz': 'buzz'}
-    response = client.post('/PhotoContest/', data)
-    assert response.status_code != 302
-    assert PhotoContest.objects.exists() is False
