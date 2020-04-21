@@ -80,11 +80,8 @@ def terms_and_conditions(request):
 class PostListView(ListView):
     model = models.Post
     context_object_name = 'posts'
+    queryset = models.Post.objects.published().order_by('-published')  # Customized queryset
 
-    def get_queryset(self):
-        queryset = models.Post.objects.published().order_by('-published')  # Customized queryset
-        # queryset = super().get_queryset()
-        return queryset
 
 class PostDetailView(DetailView):
     model = models.Post
