@@ -81,7 +81,8 @@ class PostListView(ListView):
     model = models.Post
     context_object_name = 'posts'
     queryset = models.Post.objects.published().order_by('-published')  # Customized queryset
-
+    return queryset
+    
 class PostDetailView(DetailView):
     model = models.Post
 
