@@ -117,12 +117,14 @@ class TopicDetailView(DetailView):
         return context
 
 class FormViewPhotoContest(CreateView):
+    from django.contrib import messages
     model = models.PhotoContest
     template_name = 'blog/PhotoContest_form.html'
     # template_name = 'blog/form_photo_contest.html'
     # form_class = forms.PhotoContestForm
     success_url = reverse_lazy('home')
     fields = ['first_name', 'last_name', 'email', 'photo', ]
+
     def form_valid(self, form):
         self.messages.add_message(self.request, messages.SUCCESS, 'Thank you for submitting your photo to our contest', )
         # Continue with default behaviour
