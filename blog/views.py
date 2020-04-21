@@ -97,6 +97,7 @@ class PostDetailView(DetailView):
             published__year=self.kwargs['year'],
             published__month=self.kwargs['month'],
             published__day=self.kwargs['day'],
+            slug =self.kwargs['slug'],
         )
 
 class TopicListView(ListView):

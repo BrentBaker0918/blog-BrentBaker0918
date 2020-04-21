@@ -110,6 +110,7 @@ class Post(models.Model):
                 'year': self.published.year,
                 'month': self.published.month,
                 'day': self.published.day,
+                'slug': self.slug,
             }
         else:
             kwargs = {'pk': self.pk}
